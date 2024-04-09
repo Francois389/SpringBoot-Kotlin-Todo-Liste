@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Editer</title>
+        <script th:src="@{/scripts/validationEditerFormulaire.js}" defer></script>
+        <link th:href="@{/styles/editer.css}" rel="stylesheet">
+        <link th:href="@{/styles/style.css}" rel="stylesheet">
+    </head>
+    <body>
+    <div th:replace="components/header.html"></div>
+
+    <div class="app">
+        <h1>Editer</h1>
+        <form method="post" th:action="@{'/tache/' + ${tache.urlFree} + '/editer'}" id="formulaire">
+            <div>
+                <label for="titre">Titre :</label>
+                <input type="text" id="titre" name="titre" th:value="${tache.titre}">
+            </div>
+            <div>
+                <label for="description">Description :</label>
+                <textarea id="description" name="description" th:text="${tache.description}"></textarea>
+            </div>
+            <div>
+                <label for="echeance">Ech&eacute;ance :</label>
+                <input type="date" id="echeance" name="echeance" th:value="${echeance}">
+            </div>
+            <div>
+                <label for="terminee">Termin&eacute;e :</label>
+                <input type="checkbox" id="terminee" name="terminee" th:checked="${tache.terminee}">
+            </div>
+            <div>
+                <button type="submit">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>TODO</title>
+        <link th:href="@{/styles/style.css}" rel="stylesheet">
+    </head>
+    <body>
+    <div class="app">
+        <h1 class="titre-app"><span th:text="${titre}"></span></h1>
+        <div class="taches">
+            <div class="tache" th:each="tache : ${taches}">
+                <span class="titre-tache" th:text="${tache.titre}"></span>
+                <span th:if="${tache.description != null}"
+                      th:text="${tache.description}"></span>
+                <span th:if="${tache.echeance != null}"
+                      th:text="${tache.echeance}"></span>
+                <span th:text="${tache.terminee}"></span>
+                <a th:href="@{'/tache/' + ${tache.urlFree}}">D&eacute;tails</a>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
