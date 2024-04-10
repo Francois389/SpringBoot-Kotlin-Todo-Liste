@@ -1,0 +1,29 @@
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0 10px 0;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+}
+
+.taches {
+    background-color: #999;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.tache-grid {
+    background-color: #ccc;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.titre-tache {
+    font-size: 1.25rem;
+}

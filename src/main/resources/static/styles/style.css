@@ -1,31 +1,19 @@
-*{
+* {
     font-family: "DejaVu Sans Mono", serif;
 }
 
-.app{
+body {
+    margin: 0;
+    padding: 0;
+    /*background-color: #333;*/
+    /*color: #fff;*/
+}
+
+.app {
     margin: 0 10vw 0 10vw;
 }
 
-.titre-app{
+.titre-app {
     width: 100%;
     text-align: center;
-}
-
-.taches {
-    background-color: #999;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-}
-
-.tache {
-    background-color: #ccc;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-}
-
-.titre-tache {
-    font-size: 1.25rem;
 }
