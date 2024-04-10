@@ -7,12 +7,23 @@
 form {
     display: flex;
     flex-direction: row;
+    width: -moz-available;
+    padding-left: 10%;
+}
+
+input {
+    width: 80%;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
 }
 
 .taches {
     background-color: #999;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
 }
 
 .tache-grid {
@@ -26,4 +37,29 @@ form {
 
 .titre-tache {
     font-size: 1.25rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0 10px 0;
+}
+
+.pagination > .btn {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #ccc;
+}
+
+a.disabled {
+    pointer-events: none;
+    color: #aaa;
+    text-decoration: none;
+}
+
+.pagination > .btn > a:not(.disabled) {
+    color: #000;
+    text-decoration: none;
 }
