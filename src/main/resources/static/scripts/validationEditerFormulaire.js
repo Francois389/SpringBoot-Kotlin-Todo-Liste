@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (!estDateValide()) {
             echeance.classList.add('is-invalid');
-//            event.preventDefault();
+            event.preventDefault();
         }
     });
 });
