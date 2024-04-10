@@ -34,12 +34,15 @@
         </div>
         <div class="pagination">
             <div class="btn"><a th:class="${pageCourante == 0 ? 'disabled' : ''}" href="/page/0">Premier</a></div>
-            <div class="btn"><a th:class="${pageCourante == 0 ? 'disabled' : ''}" th:href="@{'/page/' + ${pageCourante - 1}}">Pr&eacute;c&eacute;dent</a></div>
+            <div class="btn"><a th:class="${pageCourante == 0 ? 'disabled' : ''}"
+                                th:href="@{'/page/' + ${pageCourante - 1}}">Pr&eacute;c&eacute;dent</a></div>
 
             <span th:text="${pageCourante + 1}"></span>/<span th:text="${nbPages}"></span>
 
-            <div class="btn"><a th:class="${pageCourante + 1 == nbPages ? 'disabled' : ''}" th:href="@{'/page/' + ${pageCourante + 1}}">Suivant</a></div>
-            <div class="btn"><a th:class="${pageCourante + 1 == nbPages ? 'disabled' : ''}" th:href="@{'/page/' + ${nbPages - 1}}">Dernier</a></div>
+            <div class="btn"><a th:class="${pageCourante + 1 == nbPages ? 'disabled' : ''}"
+                                th:href="@{'/page/' + ${pageCourante + 1}}">Suivant</a></div>
+            <div class="btn"><a th:class="${pageCourante + 1 == nbPages ? 'disabled' : ''}"
+                                th:href="@{'/page/' + ${nbPages - 1}}">Dernier</a></div>
         </div>
     </div>
     </body>
