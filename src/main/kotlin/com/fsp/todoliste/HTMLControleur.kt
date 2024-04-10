@@ -171,7 +171,9 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
         @RequestParam `titre-recherche`: String,
         model: Model
     ): String {
-        println("Recherche de tâches contenant le titre : $`titre-recherche`")
+        if (`titre-recherche`.isBlank()) {
+            return "redirect:/"
+        }
         model["titre"] = "Liste de tâches"
         model["taches"] = tacheRepository.findByTitreContainingIgnoreCaseOrderByTitre(`titre-recherche`)
         model["titreRecherche"] = `titre-recherche`
