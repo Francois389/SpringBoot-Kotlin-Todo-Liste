@@ -10,14 +10,38 @@ import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.math.min
 
 @Controller
 class HTMLControleur(val tacheRepository: TacheRepository) {
 
+    private val taillePortion = 4
+
     @GetMapping("/")
     fun index(model: Model): String {
         model["titre"] = "Liste de tâches"
-        model["taches"] = tacheRepository.findAllByOrderByTitre()
+        model["taches"] = tacheRepository.findAllByOrderByTitre().portion(taillePortion, 0)
+        model["pageCourante"] = 0
+        model["nbPages"] = (tacheRepository.count() / taillePortion) + min(1, (tacheRepository.count() % taillePortion))
+
+        return "index"
+    }
+
+    @GetMapping("/page/{numero}")
+    fun page(@PathVariable numero: Int, model: Model): String {
+        model["titre"] = "Liste de tâches"
+        var taches = emptyList<Tache>()
+
+        try {
+            taches = tacheRepository.findAllByOrderByTitre().portion(taillePortion, numero)
+        } catch (e: IllegalArgumentException) {
+            return "redirect:/page/" + (numero - 1)
+        }
+        model["pageCourante"] = numero
+        model["nbPages"] = (tacheRepository.count() / taillePortion) + min(1, (tacheRepository.count() % taillePortion))
+        model["taches"] = taches
+
+        println("Page $numero : $taches")
 
         return "index"
     }
@@ -41,7 +65,7 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
 
         model["titre"] = "Édition de la tache"
         model["tache"] = tache
-        model["echeance"] = tache.echeance?.format(formatter)?: ""
+        model["echeance"] = tache.echeance?.format(formatter) ?: ""
         model["etatPossible"] = EtatTache.entries.map { it.toString() }
 
         return "editer"
