@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>TODO List</title>
+        <link th:href="@{/styles/style.css}" rel="stylesheet">
+        <link th:href="@{/styles/index.css}" rel="stylesheet">
+    </head>
+    <body>
+    <div class="app">
+        <h1 class="titre-app"><span th:text="${titre}"></span></h1>
+        <div class="actions" th:replace="~{components/bar-recherche::bar-recherche}">
+            <a th:href="@{'/tache/creer'}">Cr&eacute;er</a>
+        </div>
+        <div class="taches">
+            <div class="tache-grid" th:each="tache : ${taches}">
+                <span class="titre-tache" th:text="${tache.titre}"></span>
+                <span th:if="${tache.description != null}"
+                      th:text="${tache.description}"></span>
+                <span th:if="${tache.echeance != null}"
+                      th:text="${tache.echeance}"></span>
+                <span th:text="${tache.etat}"></span>
+                <a th:href="@{'/tache/' + ${tache.urlFree}}">D&eacute;tails</a>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>

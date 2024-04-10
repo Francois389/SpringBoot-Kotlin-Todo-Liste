@@ -1,0 +1,12 @@
+<div th:fragment="bar-recherche" class="barRecherche">
+    <link th:href="@{/styles/components/bar-recherche.css}" rel="stylesheet">
+        <form method="post" th:action="@{'/tache/rechercher'}" id="formulaire">
+            <input id="titre-recherche"
+                   th:value="${titreRecherche == null ? '' : titreRecherche}"
+                   type="text"
+                   name="titre-recherche"
+                   placeholder="Rechercher">
+            <button type="submit">Rechercher</button>
+        </form>
+        <a th:if="${titreRecherche != null}" th:href="@{'/'}">Supprimer recherche</a>
+</div>

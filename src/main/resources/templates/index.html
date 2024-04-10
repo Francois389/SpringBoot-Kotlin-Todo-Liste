@@ -10,16 +10,8 @@
     <div class="app">
         <h1 class="titre-app"><span th:text="${titre}"></span></h1>
         <div class="actions">
-            <a th:href="@{'/tache/creer'}">Cr&eacute;er</a>
-            <form method="post" th:action="@{'/tache/rechercher'}" id="formulaire">
-                <input id="titre-recherche"
-                       th:value="${titreRecherche == null ? '' : titreRecherche}"
-                       type="text"
-                       name="titre-recherche"
-                       placeholder="Rechercher">
-                <button type="submit">Rechercher</button>
-            </form>
-            <a th:if="${titreRecherche != null}" th:href="@{'/'}">Supprimer recherche</a>
+            <div><a th:href="@{'/tache/creer'}">Cr&eacute;er</a></div>
+            <div th:replace="~{components/bar-recherche::bar-recherche}"></div>
         </div>
         <div class="taches">
             <div class="tache-grid" th:each="tache : ${taches}">

@@ -1,0 +1,21 @@
+.barRecherche {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 10%;
+}
+
+input {
+    width: 80%;
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}

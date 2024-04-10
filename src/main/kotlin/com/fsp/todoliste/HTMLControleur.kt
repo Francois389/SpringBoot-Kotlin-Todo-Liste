@@ -176,7 +176,7 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
         model["taches"] = tacheRepository.findByTitreContainingIgnoreCaseOrderByTitre(`titre-recherche`)
         model["titreRecherche"] = `titre-recherche`
 
-        return "index"
+        return "recherche"
     }
 
 
