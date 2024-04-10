@@ -2,14 +2,21 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>TODO</title>
+        <title>TODO List</title>
         <link th:href="@{/styles/style.css}" rel="stylesheet">
     </head>
     <body>
     <div class="app">
         <h1 class="titre-app"><span th:text="${titre}"></span></h1>
+        <div class="actions">
+            <a th:href="@{'/tache/creer'}">Cr&eacute;er</a>
+            <form method="post" th:action="@{'/tache/rechercher'}">
+                <input type="text" name="recherche" placeholder="Rechercher">
+                <button type="submit">Rechercher</button>
+            </form>
+        </div>
         <div class="taches">
-            <div class="tache" th:each="tache : ${taches}">
+            <div class="tache-grid" th:each="tache : ${taches}">
                 <span class="titre-tache" th:text="${tache.titre}"></span>
                 <span th:if="${tache.description != null}"
                       th:text="${tache.description}"></span>

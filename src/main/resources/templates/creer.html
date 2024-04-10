@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Créer un t&acirc;che</title>
+        <script th:src="@{/scripts/validationEditerFormulaire.js}" defer></script>
+        <link th:href="@{/styles/editer.css}" rel="stylesheet">
+    </head>
+    <body>
+    <div th:replace="components/header.html"></div>
+    <h1>Cr&eacute;er une t&acirc;che</h1>
+    <form method="post" th:action="@{'/tache/creer'}" id="formulaire">
+        <div>
+            <label for="titre">Titre :</label>
+            <input type="text" id="titre" name="titre" th:value="${tache.titre}">
+        </div>
+        <div>
+            <label for="description">Description :</label>
+            <textarea id="description" name="description" th:text="${tache.description}"></textarea>
+        </div>
+        <div>
+            <label for="echeance">Ech&eacute;ance :</label>
+            <input type="date" id="echeance" name="echeance" th:value="${echeance}">
+        </div>
+        <div>
+            <label for="etat">&Eacute;tat :</label>
+            <select id="etat" name="etat">
+                <option th:value="${etatPossible[0]}" th:text="${etatPossible[0]}"
+                        th:selected="${tache.etat == etatPossible[0]}">Non
+                </option>
+                <option th:value="${etatPossible[1]}" th:text="${etatPossible[1]}"
+                        th:selected="${tache.etat == etatPossible[1]}">Non
+                </option>
+                <option th:value="${etatPossible[2]}" th:text="${etatPossible[2]}"
+                        th:selected="${tache.etat == etatPossible[2]}">Non
+                </option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Enregistrer</button>
+        </div>
+    </form>
+    <a th:href="@{'/tache/' + ${tache.urlFree} }">Annuler</a>
+
+    </body>
+</html>

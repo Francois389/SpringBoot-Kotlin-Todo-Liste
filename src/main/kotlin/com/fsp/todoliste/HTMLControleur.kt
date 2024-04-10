@@ -103,4 +103,43 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
 
         return "redirect:/"
     }
+
+    @GetMapping("/tache/creer")
+    fun creer(model: Model): String {
+        model["titre"] = "Création de la tache"
+        model["etatPossible"] = EtatTache.entries.map { it.toString() }
+        model["tache"] = Tache()
+
+        return "creer"
+    }
+
+    private fun Tache(): Tache {
+        return Tache("", "", null, EtatTache.A_FAIRE.toString())
+    }
+
+    @PostMapping("/tache/creer")
+    fun creer(
+        @RequestParam titre: String,
+        @RequestParam description: String,
+        @RequestParam echeance: String,
+        @RequestParam etat: String
+    ): String {
+        var pageDestination: String = "redirect:/tache/creer"
+        val dateEcheance: LocalDateTime? =
+            if (echeance.isNotBlank())
+                LocalDate.parse(echeance).atStartOfDay()
+            else null
+
+        if (titre.isNotBlank() && (dateEcheance == null || dateEcheance.isAfter(LocalDateTime.now()))) {
+            val tache = Tache(titre, description, dateEcheance, etat)
+            tacheRepository.save(tache)
+
+            println("Tâche créée : $tache")
+
+            pageDestination = "redirect:/tache/${tache.urlFree}"
+        }
+
+        return pageDestination
+    }
+
 }
