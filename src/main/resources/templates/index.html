@@ -10,8 +10,12 @@
         <h1 class="titre-app"><span th:text="${titre}"></span></h1>
         <div class="actions">
             <a th:href="@{'/tache/creer'}">Cr&eacute;er</a>
-            <form method="post" th:action="@{'/tache/rechercher'}">
-                <input type="text" name="recherche" placeholder="Rechercher">
+            <form method="post" th:action="@{'/tache/rechercher'}" id="formulaire">
+                <input id="titre-recherche"
+                       th:value="${titreRecherche == null ? '' : titreRecherche}"
+                       type="text"
+                       name="titre-recherche"
+                       placeholder="Rechercher">
                 <button type="submit">Rechercher</button>
             </form>
         </div>

@@ -6,6 +6,7 @@ interface TacheRepository: CrudRepository<Tache, Long>{
     fun findByTitre(titre: String): Tache?
     fun findByUrlFree(urlFree: String): Tache?
     fun findAllByOrderByTitre(): List<Tache>
+    fun findByTitreContainingIgnoreCaseOrderByTitre(titre: String): List<Tache>
 }
 
 //interface UserRepository: CrudRepository<User, Long>{

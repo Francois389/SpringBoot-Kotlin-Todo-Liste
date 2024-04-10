@@ -142,4 +142,18 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
         return pageDestination
     }
 
+    @PostMapping("/tache/rechercher")
+    fun rechercher(
+        @RequestParam `titre-recherche`: String,
+        model: Model
+    ): String {
+        println("Recherche de tâches contenant le titre : $`titre-recherche`")
+        model["titre"] = "Liste de tâches"
+        model["taches"] = tacheRepository.findByTitreContainingIgnoreCaseOrderByTitre(`titre-recherche`)
+        model["titreRecherche"] = `titre-recherche`
+
+        return "index"
+    }
+
+
 }
