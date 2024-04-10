@@ -91,4 +91,16 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
 
         return "supprimer"
     }
+
+    @PostMapping("/tache/{urlFree}/supprimer")
+    fun supprimer(@PathVariable urlFree: String): String {
+        val tache = tacheRepository.findByUrlFree(urlFree)
+            ?: throw IllegalArgumentException("Tâche inconnue")
+
+        tacheRepository.delete(tache)
+
+        println("Tâche supprimée : $tache")
+
+        return "redirect:/"
+    }
 }

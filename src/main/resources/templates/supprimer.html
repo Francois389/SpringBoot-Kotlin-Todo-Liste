@@ -3,10 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <title>Supprimer</title>
+        <link th:href="@{/styles/style.css}" rel="stylesheet">
     </head>
     <body>
     <div th:replace="components/header.html" ></div>
-    <p>Supprimer</p>
+    <h1>&Ecirc;tes vous, s&ucirc;r de vouloir suprimer cette t&acirc;che ?</h1>
 
+    <div th:replace="components/tache.html"></div>
+
+    <form method="post" th:action="@{'/tache/' + ${tache.urlFree} + '/supprimer'}">
+        <button type="submit">Oui supprimer</button>
+    </form>
+    <a th:href="@{'/tache/' + ${tache.urlFree} }">Non, garder la t&acirc;che</a>
     </body>
 </html>
