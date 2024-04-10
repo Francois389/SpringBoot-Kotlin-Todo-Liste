@@ -1,0 +1,16 @@
+<link th:href="@{/styles/tache.css}" rel="stylesheet">
+<div class="tache">
+    <h1><span th:text="${tache.titre}"></span></h1>
+    <div class="description" th:if="${tache.description != null && tache.description != ''}">
+        <span>Description:</span>
+        <span th:text="${tache.description}"></span>
+    </div>
+    <div class="echeance" th:if="${tache.echeance != null}">
+        <span>Echéance:</span>
+        <span th:text="${tache.echeance}"></span>
+    </div>
+    <div class="terminee">
+        <span>&Eacute;tat :</span>
+        <span th:text="${tache.etat}"></span>
+    </div>
+</div>

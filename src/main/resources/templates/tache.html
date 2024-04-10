@@ -2,24 +2,12 @@
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title th:text="${urlFree}">Title</title>
+        <title th:text="${tache.titre}">Title</title>
     </head>
     <body>
     <div th:replace="components/header.html">Header</div>
     <div class="app">
-        <h1><span th:text="${tache.titre}"></span></h1>
-        <div class="description" th:if="${tache.description != null}">
-            <span>Description:</span>
-            <span th:text="${tache.description}"></span>
-        </div>
-        <div class="echeance" th:if="${tache.echeance != null}">
-            <span>Echéance:</span>
-            <span th:text="${tache.echeance}"></span>
-        </div>
-        <div class="terminee">
-            <span>Terminée:</span>
-            <span th:text="${tache.terminee}"></span>
-        </div>
+        <div th:replace="components/tache.html">Tache</div>
 
         <div class="actions">
             <a th:href="@{'/tache/' + ${tache.urlFree} + '/editer'}">Editer</a>
