@@ -15,7 +15,7 @@
                       th:text="${tache.description}"></span>
                 <span th:if="${tache.echeance != null}"
                       th:text="${tache.echeance}"></span>
-                <span th:text="${tache.terminee}"></span>
+                <span th:text="${tache.etat}"></span>
                 <a th:href="@{'/tache/' + ${tache.urlFree}}">D&eacute;tails</a>
             </div>
         </div>

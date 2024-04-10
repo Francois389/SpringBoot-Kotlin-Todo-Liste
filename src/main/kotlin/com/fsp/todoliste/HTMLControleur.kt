@@ -42,6 +42,7 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
         model["titre"] = "Édition de la tache"
         model["tache"] = tache
         model["echeance"] = tache.echeance?.format(formatter)?: ""
+        model["etatPossible"] = EtatTache.entries.map { it.toString() }
 
         return "editer"
     }
@@ -52,7 +53,7 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
         @RequestParam titre: String,
         @RequestParam description: String,
         @RequestParam echeance: String,
-        @RequestParam(required = false, defaultValue = "false") terminee: Boolean
+        @RequestParam etat: String
     ): String {
         val tache = tacheRepository.findByUrlFree(urlFree)
             ?: throw IllegalArgumentException("Tâche inconnue")
@@ -66,7 +67,7 @@ class HTMLControleur(val tacheRepository: TacheRepository) {
         if (titre.isNotBlank() && (dateEcheance == null || dateEcheance.isAfter(LocalDateTime.now()))) {
             tache.titre = titre
             tache.description = description
-            tache.terminee = terminee
+            tache.etat = EtatTache.valueOf(etat).toString()
             tache.echeance = dateEcheance
 
             tacheRepository.save(tache)

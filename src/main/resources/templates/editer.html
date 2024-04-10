@@ -26,13 +26,19 @@
                 <input type="date" id="echeance" name="echeance" th:value="${echeance}">
             </div>
             <div>
-                <label for="terminee">Termin&eacute;e :</label>
-                <input type="checkbox" id="terminee" name="terminee" th:checked="${tache.terminee}">
+                <label for="etat">&Eacute;tat :</label>
+                <select id="etat" name="etat">
+                    <option th:value="${etatPossible[0]}" th:text="${etatPossible[0]}" th:selected="${tache.etat == etatPossible[0]}">Non</option>
+                    <option th:value="${etatPossible[1]}" th:text="${etatPossible[1]}" th:selected="${tache.etat == etatPossible[1]}">Non</option>
+                    <option th:value="${etatPossible[2]}" th:text="${etatPossible[2]}" th:selected="${tache.etat == etatPossible[2]}">Non</option>
+                </select>
             </div>
             <div>
                 <button type="submit">Enregistrer</button>
             </div>
         </form>
+        <a th:href="@{'/tache/' + ${tache.urlFree} + '/supprimer'}">Supprimer</a>
+        <a th:href="@{'/tache/' + ${tache.urlFree} }">Annuler</a>
     </div>
 
     </body>

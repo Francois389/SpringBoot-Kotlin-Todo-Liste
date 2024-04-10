@@ -10,13 +10,19 @@ class Tache(
     var titre: String,
     var description: String? = null,
     var echeance: LocalDateTime? = null,
-    var terminee: Boolean = false,
+    var etat: String = EtatTache.A_FAIRE.toString(),
     var urlFree: String = titre.toURLFree(),
     @Id @GeneratedValue var id: Long? = null
 ) {
     override fun toString(): String {
-        return "Tache(titre='$titre', description=$description, echeance=$echeance, terminee=$terminee, urlFree='$urlFree', id=$id)"
+        return "Tache(titre='$titre', description=$description, echeance=$echeance, terminee=$etat, urlFree='$urlFree', id=$id)"
     }
+}
+
+enum class EtatTache {
+    A_FAIRE,
+    EN_COURS,
+    TERMINEE
 }
 
 //@Entity
